@@ -1,0 +1,30 @@
+{
+  "name": "node-omegle",
+  "version": "0.1.0",
+  "description": "An omegle library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valoran-labs/node-omegle"
+  },
+  "keywords": [
+    "omegle"
+  ],
+  "author": "iczero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valoran-labs/node-omegle/issues"
+  },
+  "homepage": "https://github.com/valoran-labs/node-omegle#readme",
+  "dependencies": {
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-google": "^0.9.1"
+  }
+}
