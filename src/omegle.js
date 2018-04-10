@@ -39,7 +39,7 @@ class OmegleClient extends EventEmitter {
   constructor(opts) {
     super();
     if (!opts) opts = {};
-    this.serverList = [];
+    this.serverList = null;
     this.currentServer = null;
     this.unmonForced = null;
     this._serverList = null;
@@ -79,6 +79,7 @@ class OmegleClient extends EventEmitter {
    */
   connect(topics) {
     if (this.id) throw new Error('Already connected!');
+    if (!this.serverList) throw new Error('Server list not yet available');
 
     this.currentServer = `${this.serverList[Math.floor(Math.random() *
       this.serverList.length)]}.${BASE_DOMAIN}`;
@@ -132,7 +133,7 @@ class OmegleClient extends EventEmitter {
     this.requestPost('/stoppedtyping', {id: this.id})
       .catch(err => this.emit('error', err));
   }
-  /** 
+  /**
    * Tells the omegle server to stop searching for common interests
    * The web-based client does this automatically after some time
    */
@@ -174,7 +175,7 @@ class OmegleClient extends EventEmitter {
     // connected
     this.connected = true;
   }
-  /** 
+  /**
    * Stop fetching events for the current session and return the id so the
    * session can be seamlessly transferred to another client
    * (see OmegleClient#trnasferSession)

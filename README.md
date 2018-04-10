@@ -12,11 +12,11 @@ let client = new Client();
 client.on('message', message => console.log(message));
 client.on('disconnected', () => console.log('Disconnected'));
 
-client.connect();
+client.on('ready', () => client.connect());
 client.on('connected', () => {
   console.log('Connected');
   client.send('beep boop i am a bot');
-  client.disconnect();
+  setTimeout(() => client.disconnect(), 10000);
 });
 ```
 
@@ -38,6 +38,8 @@ Arguments:
 #### `connect(topics)`
 
 Connect to omegle
+
+This method must be called after the `ready` event is fired
 
 Arguments:
 
@@ -95,6 +97,8 @@ Returns the current session id
 
 #### Events
 
+- `ready`: The instance has successfully fetched connection information from
+  omegle, must be fired before connect is called
 - `waiting`: Waiting for a connection
 - `connected`: Connected to the other user
 - `statusInfo`: Status information from omegle
@@ -109,7 +113,7 @@ Returns the current session id
 - `error`: Request error, thrown locally by the client
 - `omegleError`: Omegle gave you an error
 - `connectionDied`: The connection died abnormally
-- `antinudeBanned`: The client was banned to the unfiltered section for 
+- `antinudeBanned`: The client was banned to the unfiltered section for
   being bad
 - `typing`: User is typing
 - `stoppedTyping`: User has stopped typing
