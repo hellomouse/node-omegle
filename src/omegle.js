@@ -90,7 +90,8 @@ class OmegleClient extends EventEmitter {
       firstevents: 1,
       randid: this.randid,
       spid: '',
-      lang: this.language
+      lang: this.language,
+      caps: 'recaptcha2,t',
     };
     if (topics && topics[0]) {
       this.topics = topics;
